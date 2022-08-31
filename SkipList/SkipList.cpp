@@ -3,7 +3,6 @@
 
 #include <iostream>
 #include "SkipNode.cpp"
-#include "HeadNode.cpp"
 #include "LinkedListNode.cpp"
 
 enum Food
@@ -18,7 +17,6 @@ enum Food
 int main()
 {
 
-	SkipNode<Food> tree;
 
 	std::cout << "Hello World!\n";
 }

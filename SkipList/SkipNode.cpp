@@ -1,4 +1,4 @@
-
+#include <memory>
 #include <random>
 
 template<typename T>
@@ -20,7 +20,7 @@ public:
 			increaseHeight = std::rand() % 2;
 		}
 
-		nodeConnections = new SkipNode(height);
+		nodeConnections = new SkipNode<T>[height];
 	}
 
 };
