@@ -18,9 +18,6 @@
     <ClCompile Include="SkipList.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SkipNode.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="LinkedListNode.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -28,6 +25,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="LinkedList.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SkipNode.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

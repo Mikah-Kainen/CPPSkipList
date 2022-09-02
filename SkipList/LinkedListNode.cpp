@@ -2,18 +2,13 @@
 #include "SkipNode.cpp"
 
 
-template<typename T>
+template<typename TSkipNode>
 class LinkedListNode
 {
 private:
 
 
 public:
-	std::shared_ptr<SkipNode<T>> SkipNodeLink;
-	std::shared_ptr<LinkedListNode<T>> DownLink;
-
-	LinkedListNode()
-	{
-
-	}
+	std::shared_ptr<TSkipNode> SkipNodeLink;
+	std::shared_ptr<LinkedListNode<TSkipNode>> DownLink;
 };

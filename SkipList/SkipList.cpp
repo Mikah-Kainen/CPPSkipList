@@ -3,7 +3,8 @@
 
 #include <iostream>
 #include "SkipNode.cpp"
-#include "LinkedListNode.cpp"
+#include "IIndexable.cpp"
+#include "LinkedList.cpp"
 
 enum Food
 {
@@ -16,7 +17,7 @@ enum Food
 
 int main()
 {
-
+	IIndexable<SkipNode<int>> *head = new LinkedList<SkipNode<int>>();
 
 	std::cout << "Hello World!\n";
 }
