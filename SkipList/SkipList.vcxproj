@@ -127,9 +127,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="IIndexable.cpp" />
     <ClCompile Include="LinkedList.cpp" />
     <ClCompile Include="LinkedListNode.cpp" />
+    <ClCompile Include="List.cpp" />
     <ClCompile Include="SkipList.cpp" />
     <ClCompile Include="SkipNode.cpp" />
   </ItemGroup>
