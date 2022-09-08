@@ -2,8 +2,7 @@
 //
 
 #include <iostream>
-#include "SkipNode.cpp"
-#include "LinkedList.cpp"
+#include "List.cpp"
 
 enum Food
 {
@@ -17,12 +16,15 @@ enum Food
 
 int main()
 {
-	IIndexable<SkipNode<int>> *head = new LinkedList<SkipNode<int>>();
-	head->IncreaseHeight();
-	head->IncreaseHeight();
-	auto result0 = (*head)[0];
+	List<int> list = List<int>(100);
+	list.Add(5);
+	list.Add(12);
+	list.Add(7);
+	list.Add(3);
+	list.Add(20);
 
 	std::cout << "Hello World!\n";
+	//check if the LinkedList and the SkipNode indexers work
 }
 
 

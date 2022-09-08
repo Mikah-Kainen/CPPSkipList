@@ -7,29 +7,29 @@ class LinkedList :public IIndexable<TSkipNode>
 {
 private:
 	std::shared_ptr<LinkedListNode<TSkipNode>> tail; //tail is head
+	int height;
 
 public:
-	int Height; //make sure count is acurate!!!!
 
 	LinkedList()
-		:Height{ 1 }
+		:height{ 1 }
 	{
 		tail = std::make_shared<LinkedListNode<TSkipNode>>();
 	}
 
 	int GetHeight()
 	{
-		return Height;
+		return height;
 	}
 
 	std::shared_ptr<TSkipNode> operator [](int targetIndex)
 	{
-		if (targetIndex > Height - 1)
+		if (targetIndex > height - 1)
 		{
-			//throw std::bad_exception("Index Out of Range");
+			throw std::bad_exception();
 		}
 		std::shared_ptr<LinkedListNode<TSkipNode>> current = tail;
-		for(int currentIndex = Height -1; currentIndex != targetIndex; currentIndex --)
+		for(int currentIndex = height -1; currentIndex != targetIndex; currentIndex --)
 		{
 			current = current->DownLink;
 		}
@@ -43,6 +43,6 @@ public:
 		std::shared_ptr<LinkedListNode<TSkipNode>> oldTail = tail;
 		tail = std::make_shared<LinkedListNode<TSkipNode>>();
 		tail->DownLink = oldTail;
-		Height++;
+		height++;
 	}
 };

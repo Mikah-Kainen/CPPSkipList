@@ -8,7 +8,6 @@ template<typename TSkipNode>
 /*abstract*/class IIndexable
 {
 public:
-	int Test;
 	virtual int GetHeight() = 0;
 
 	virtual std::shared_ptr<TSkipNode> operator [](int index) = 0;
@@ -17,29 +16,30 @@ public:
 
 
 template<typename T>
-class SkipNode : public IIndexable<SkipNode<T>>, IIndexable<SkipNode<long>>
+class SkipNode : public IIndexable<SkipNode<T>>
 {
 private:
+	int height;
 
 public:
 	std::vector<std::shared_ptr<SkipNode<T>>> nodeConnections;
-	int Height;
 	T Value;
 
 	int GetHeight() 
 	{ 
-		return Height + IIndexable<SkipNode<T>>::Test + IIndexable<SkipNode<long>>::Test;
+		return height;
 	}
 
-	SkipNode(int randSeed)
+	SkipNode(int randSeed, T value)
+		:Value{value}
 	{
 		std::srand(randSeed);
 		int increaseHeight = 1;
-		Height = 0;	
+		height = 0;	
 		
 		while (increaseHeight == 1)
 		{
-			Height += 1;
+			height += 1;
 			increaseHeight = std::rand() % 2;
 		}
 	}
