@@ -11,6 +11,7 @@ public:
 	virtual int GetHeight() = 0;
 
 	virtual std::shared_ptr<TSkipNode> operator [](int index) = 0;
+	virtual void SetAt(int index, std::shared_ptr<TSkipNode> newValue) = 0;
 	virtual void IncreaseHeight() = 0;
 };
 
@@ -25,28 +26,30 @@ public:
 	std::vector<std::shared_ptr<SkipNode<T>>> nodeConnections;
 	T Value;
 
-	int GetHeight() 
-	{ 
+	int GetHeight()
+	{
 		return height;
 	}
 
-	SkipNode(int randSeed, T value)
-		:Value{value}
+	SkipNode(int nodeHeight, T value)
+		:Value{ value }
 	{
-		std::srand(randSeed);
-		int increaseHeight = 1;
-		height = 0;	
-		
-		while (increaseHeight == 1)
+		height = nodeHeight;
+
+		for (int i = 0; i < nodeHeight; i++)
 		{
-			height += 1;
-			increaseHeight = std::rand() % 2;
+			nodeConnections.push_back(nullptr);
 		}
 	}
 
 	std::shared_ptr<SkipNode<T>> operator [](int index)
 	{
 		return nodeConnections[index];
+	}
+
+	void SetAt(int index, std::shared_ptr<SkipNode<T>> newValue)
+	{
+		nodeConnections[index] = newValue;
 	}
 
 	void IncreaseHeight()

@@ -16,7 +16,7 @@ enum Food
 
 int main()
 {
-	List<int> list = List<int>(100);
+	List<int> list = List<int>(102);
 	list.Add(5);
 	list.Add(12);
 	list.Add(7);

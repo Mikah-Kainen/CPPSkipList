@@ -1,3 +1,4 @@
+#pragma once
 #include "LinkedListNode.cpp"
 #include <memory>
 #include <exception>
@@ -36,6 +37,22 @@ public:
 
 		return current->SkipNodeLink;
 	}
+
+	void SetAt(int index, std::shared_ptr<TSkipNode> newValue)
+	{
+		if (index > height - 1)
+		{
+			throw std::bad_exception();
+		}
+		std::shared_ptr<LinkedListNode<TSkipNode>> current = tail;
+		for (int currentIndex = height - 1; currentIndex != index; currentIndex--)
+		{
+			current = current->DownLink;
+		}
+
+		current->SkipNodeLink = newValue;
+	}
+
 
 	//this is a standard increase height then attach then search and attach the rest
 	void IncreaseHeight()
