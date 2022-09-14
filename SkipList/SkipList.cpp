@@ -23,6 +23,10 @@ int main()
 	list.Add(3);
 	list.Add(20);
 
+	list.Remove(20);
+	list.Remove(3);
+	list.Remove(7);
+
 	std::cout << "Hello World!\n";
 	//check if the LinkedList and the SkipNode indexers work
 }
