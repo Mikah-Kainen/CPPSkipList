@@ -1,7 +1,9 @@
 #pragma once
 #include "SkipNode.cpp"
 #include "LinkedList.cpp"
+#include "LinkedListNode.cpp"
 #include <random>
+#include <deque>
 
 
 template<typename T>
@@ -12,8 +14,22 @@ private:
 	int seed;
 	int count;
 
-public:
+	void deconstructionHelper(std::shared_ptr<IIndexable<SkipNode<T>>> parent, int index, std::shared_ptr<SkipNode<T>> targetNode)
+	{
+		if (!targetNode)
+		{
+			return;
+		}
+		deconstructionHelper(targetNode, index, (*targetNode)[index]);
+		for (int i = targetNode->GetHeight() - 2; i >= 0; i--)
+		{
+			deconstructionHelper(targetNode, i, (*targetNode)[i]);
+		}
+		parent->SetAt(index, nullptr);
+	}
 
+
+public:
 
 	List(int seed)
 		:seed{ seed }
@@ -21,6 +37,25 @@ public:
 		head = std::make_shared<LinkedList<SkipNode<T>>>();
 		std::srand(seed);
 	}
+
+	~List()
+	{
+		for (int i = head->GetHeight() - 1; i >= 0; i--)
+		{
+			deconstructionHelper(head, i, (*head)[i]);
+		}
+		head = nullptr;
+	}
+
+	List(List<T>& copyList)
+	{
+		head = std::make_shared<LinkedList<SkipNode<T>>>(*(copyList.head));
+		seed = copyList->seed;
+		count = copyList->count;
+
+		//traverse from the lowest level, copying the nodes as I add them to the List. Then, traverse from the higher levels and add the connections
+	}
+
 
 	void Add(T Value)
 	{

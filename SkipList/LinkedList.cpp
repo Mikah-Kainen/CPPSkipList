@@ -7,8 +7,19 @@ template<typename TSkipNode>
 class LinkedList :public IIndexable<TSkipNode>
 {
 private:
-	std::shared_ptr<LinkedListNode<TSkipNode>> tail; //tail is head
 	int height;
+	std::shared_ptr<LinkedListNode<TSkipNode>> tail; //tail is head
+
+	void deconstructionHelper(std::shared_ptr<LinkedListNode<TSkipNode>> targetNode)
+	{
+		if (!targetNode)
+		{
+			return;
+		}
+
+		deconstructionHelper(targetNode->DownLink);
+		targetNode->DownLink = nullptr;
+	}
 
 public:
 
@@ -16,6 +27,26 @@ public:
 		:height{ 1 }
 	{
 		tail = std::make_shared<LinkedListNode<TSkipNode>>();
+	}
+
+	~LinkedList()
+	{
+		deconstructionHelper(tail);
+		tail = nullptr;
+	}
+
+	LinkedList(LinkedList<TSkipNode>& copyList)
+	{
+		tail = std::make_shared<LinkedListNode<TSkipNode>>();
+		std::shared_ptr<LinkedListNode<TSkipNode>> parent = tail;
+		std::shared_ptr<LinkedListNode<TSkipNode>> copyCurrent = copyList.tail->DownLink;
+		while (copyCurrent)
+		{
+			parent->DownLink = std::make_shared<LinkedListNode<TSkipNode>>();
+			parent = parent->DownLink;
+			copyCurrent = copyCurrent->DownLink;
+		}
+		height = copyList.GetHeight();
 	}
 
 	int GetHeight()

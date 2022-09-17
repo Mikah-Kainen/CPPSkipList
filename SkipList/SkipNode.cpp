@@ -21,9 +21,9 @@ class SkipNode : public IIndexable<SkipNode<T>>
 {
 private:
 	int height;
+	std::vector<std::shared_ptr<SkipNode<T>>> nodeConnections;
 
 public:
-	std::vector<std::shared_ptr<SkipNode<T>>> nodeConnections;
 	T Value;
 
 	int GetHeight()
@@ -40,6 +40,10 @@ public:
 		{
 			nodeConnections.push_back(nullptr);
 		}
+	}
+
+	~SkipNode()
+	{
 	}
 
 	std::shared_ptr<SkipNode<T>> operator [](int index)

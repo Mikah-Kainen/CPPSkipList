@@ -16,18 +16,35 @@ enum Food
 
 int main()
 {
-	List<int> list = List<int>(102);
-	list.Add(5);
-	list.Add(12);
-	list.Add(7);
-	list.Add(3);
-	list.Add(20);
+	std::string input = "bla";
+	std::cin >> input;
+	List<int> newList = 0;
+	{
+		List<int> list(102);
+		list.Add(5);
+		list.Add(12);
+		list.Add(7);
+		list.Add(3);
+		list.Add(20);
+		for (int i = 100; i < 1000; i++)
+		{
+			list.Add(i);
+		}
 
-	list.Remove(20);
-	list.Remove(3);
-	list.Remove(7);
+		list.Remove(20);
+		list.Remove(3);
+		list.Remove(7);
 
-	std::cout << "Hello World!\n";
+		std::cout << "Hello World!\n";
+
+		std::cin >> input;
+		newList = list;
+	}
+
+	while (true)
+	{
+		
+	}
 	//check if the LinkedList and the SkipNode indexers work
 }
 
