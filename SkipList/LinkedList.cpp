@@ -18,6 +18,7 @@ private:
 		}
 
 		deconstructionHelper(targetNode->DownLink);
+		//targetNode->SkipNodeLink = nullptr;
 		targetNode->DownLink = nullptr;
 	}
 

@@ -15,6 +15,8 @@ public:
 	virtual void IncreaseHeight() = 0;
 };
 
+static int DeconstructorCallCount = 0;
+
 
 template<typename T>
 class SkipNode : public IIndexable<SkipNode<T>>
@@ -44,6 +46,8 @@ public:
 
 	~SkipNode()
 	{
+		//nodeConnections = std::vector<std::shared_ptr<SkipNode<T>>>();
+		DeconstructorCallCount++;
 	}
 
 	std::shared_ptr<SkipNode<T>> operator [](int index)

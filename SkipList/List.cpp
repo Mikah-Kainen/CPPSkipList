@@ -6,6 +6,9 @@
 #include <deque>
 
 
+static int heightOne = 0;
+static int totalNodes = 0;
+
 template<typename T>
 class List
 {
@@ -14,18 +17,24 @@ private:
 	int seed;
 	int count;
 
-	void deconstructionHelper(std::shared_ptr<IIndexable<SkipNode<T>>> parent, int index, std::shared_ptr<SkipNode<T>> targetNode)
+	void deconstructionHelper(std::shared_ptr<IIndexable<SkipNode<T>>> parent, int index)
 	{
+		std::shared_ptr<SkipNode<T>> targetNode = (*parent)[index];
 		if (!targetNode)
 		{
 			return;
 		}
-		deconstructionHelper(targetNode, index, (*targetNode)[index]);
-		for (int i = targetNode->GetHeight() - 2; i >= 0; i--)
-		{
-			deconstructionHelper(targetNode, i, (*targetNode)[i]);
-		}
+		//deconstructionHelper(targetNode, index, (*targetNode)[index]);
+		//for (int i = targetNode->GetHeight() - 1; i >= 0; i--)
+		//{
+		//	deconstructionHelper(targetNode, i, (*targetNode)[i]);
+		//}
+		deconstructionHelper(targetNode, index);
 		parent->SetAt(index, nullptr);
+		if (index >= 1)
+		{
+			deconstructionHelper(targetNode, index - 1);
+		}
 	}
 
 
@@ -42,7 +51,7 @@ public:
 	{
 		for (int i = head->GetHeight() - 1; i >= 0; i--)
 		{
-			deconstructionHelper(head, i, (*head)[i]);
+			deconstructionHelper(head, i);
 		}
 		head = nullptr;
 	}
@@ -73,6 +82,12 @@ public:
 			head->IncreaseHeight();
 			nodeHeight = head->GetHeight();
 		}
+
+		if (nodeHeight == 1)
+		{
+			heightOne++;
+		}
+		totalNodes++;
 
 		std::shared_ptr<SkipNode<T>> newNode = std::make_shared<SkipNode<T>>(nodeHeight, Value);
 		std::shared_ptr<IIndexable<SkipNode<T>>> parent = head;
@@ -110,6 +125,7 @@ public:
 			}
 			if (current && current->Value == targetValue)
 			{
+				/*parent->SetAt(i, nullptr);*/
 				parent->SetAt(i, (*current)[i]);
 				didRemove = true;
 			}
