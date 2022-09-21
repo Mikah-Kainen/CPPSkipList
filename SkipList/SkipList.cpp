@@ -3,6 +3,8 @@
 
 #include <iostream>
 #include "List.cpp"
+#include "SkipNode.cpp"
+#include <vector>
 
 enum Food
 {
@@ -17,32 +19,53 @@ enum Food
 int main()
 {
 
+	
+
+	const int vectorLength = 500;
+	//SkipNode<int> nodeArray[vectorLength];
 	////List<int> newList = 0;
+
+	int seedCount = 200;
+
+	while (true)
 	{
-		std::string input = "bla";
+		seedCount++;
+		std::string input = "start\n";		
 		std::cin >> input;
-		List<int> list(102);
-		list.Add(5);
-		list.Add(12);
-		list.Add(7);
-		list.Add(3);
-		list.Add(20);
-		for (int i = 100; i < 200; i++)
+
+		std::cout << "vector alive\n";
+		//std::vector<SkipNode<int>> skipNodeVector = std::vector<SkipNode<int>>();
+		//std::vector < LinkedListNode<SkipNode<int>>> linkedNodeVector = std::vector<LinkedListNode<SkipNode<int>>>();
+		List<int> list(seedCount);
+
+		std::cin >> input;
+
+
+		for (int i = 0; i < vectorLength; i++)
 		{
+			//skipNodeVector.push_back(SkipNode<int>(1, i));
+			//linkedNodeVector.push_back(LinkedListNode<SkipNode<int>>());
 			list.Add(i);
 		}
 
+		std::cout << "Added " << vectorLength << " Nodes\n";
+
 		std::cin >> input;
 
+		for (int i = 0; i < vectorLength; i += 1)
+		{
+			list.Remove(i);
+		}
+		//linkedNodeVector.clear();
+		//skipNodeVector.clear();
+		std::cout << "Removed " << vectorLength << " Nodes\n";
 		//list.Remove(20);
 		//list.Remove(3);
 		//list.Remove(7);
 
-		std::cout << "Hello World!\n";
-
-		std::cin >> input;
 		//	//newList = list;
 	}
+
 
 	while (true)
 	{

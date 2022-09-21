@@ -15,7 +15,7 @@ public:
 	virtual void IncreaseHeight() = 0;
 };
 
-static int DeconstructorCallCount = 0;
+//static int DeconstructorCallCount = 0;
 
 
 template<typename T>
@@ -33,6 +33,10 @@ public:
 		return height;
 	}
 
+	SkipNode()
+	{
+	}
+
 	SkipNode(int nodeHeight, T value)
 		:Value{ value }
 	{
@@ -42,12 +46,6 @@ public:
 		{
 			nodeConnections.push_back(nullptr);
 		}
-	}
-
-	~SkipNode()
-	{
-		//nodeConnections = std::vector<std::shared_ptr<SkipNode<T>>>();
-		DeconstructorCallCount++;
 	}
 
 	std::shared_ptr<SkipNode<T>> operator [](int index)
