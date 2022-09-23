@@ -19,15 +19,14 @@ enum Food
 int main()
 {
 
-	
-
-	const int vectorLength = 500;
+	const int vectorLength = 5;
 	//SkipNode<int> nodeArray[vectorLength];
-	////List<int> newList = 0;
+	//List<int> newList;
 
 	int seedCount = 200;
 
-	while (true)
+	bool gonnaBeFalse = true;
+	while (gonnaBeFalse)
 	{
 		seedCount++;
 		std::string input = "start\n";		
@@ -52,10 +51,10 @@ int main()
 
 		std::cin >> input;
 
-		for (int i = 0; i < vectorLength; i += 1)
-		{
-			list.Remove(i);
-		}
+		//for (int i = 0; i < vectorLength; i += 1)
+		//{
+		//	list.Remove(i);
+		//}
 		//linkedNodeVector.clear();
 		//skipNodeVector.clear();
 		std::cout << "Removed " << vectorLength << " Nodes\n";
@@ -63,7 +62,9 @@ int main()
 		//list.Remove(3);
 		//list.Remove(7);
 
-		//	//newList = list;
+		List<int> newList(list);
+
+		list.~List();
 	}
 
 

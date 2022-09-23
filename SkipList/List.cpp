@@ -57,10 +57,32 @@ public:
 	}
 
 	List(List<T>& copyList)
+
 	{
-		head = std::make_shared<LinkedList<SkipNode<T>>>(*(copyList.head));
-		seed = copyList->seed;
-		count = copyList->count;
+		//LinkedList<SkipNode<T>> copy(*copyList.head);
+		//head = std::make_shared<LinkedList<SkipNode<T>>>((*copyList.head));
+		head = std::make_shared<LinkedList<SkipNode<T>>>();
+		head->IncreaseHeight();
+		seed = copyList.seed;
+		count = copyList.count;
+
+		std::vector<std::shared_ptr<IIndexable<SkipNode<T>>>> previousNodes = std::vector<std::shared_ptr<IIndexable<SkipNode<T>>>>();
+		for (int i = 0; i < head->GetHeight(); i++)
+		{
+			previousNodes.push_back(head);
+		}
+
+		std::shared_ptr<SkipNode<T>> fakeCurrent = (*copyList.head)[0];
+		while (fakeCurrent)
+		{
+			std::shared_ptr<SkipNode<T>> temp = std::make_shared<SkipNode<T>>(SkipNode<T>(fakeCurrent->GetHeight(), fakeCurrent->Value));
+			for (int i = 0; i < fakeCurrent->GetHeight(); i++)
+			{
+				previousNodes[i]->SetAt(i, temp);
+				previousNodes[i] = temp;
+			}
+			fakeCurrent = (*fakeCurrent)[0];
+		}
 
 		//traverse from the lowest level, copying the nodes as I add them to the List. Then, traverse from the higher levels and add the connections
 	}
