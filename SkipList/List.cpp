@@ -60,9 +60,9 @@ public:
 
 	{
 		//LinkedList<SkipNode<T>> copy(*copyList.head);
-		//head = std::make_shared<LinkedList<SkipNode<T>>>((*copyList.head));
-		head = std::make_shared<LinkedList<SkipNode<T>>>();
-		head->IncreaseHeight();
+		head = std::make_shared<LinkedList<SkipNode<T>>>((*copyList.head));
+		//head = std::make_shared<LinkedList<SkipNode<T>>>();
+		//head->IncreaseHeight();
 		seed = copyList.seed;
 		count = copyList.count;
 
